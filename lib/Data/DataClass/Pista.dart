@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:sarnanoneve/icons/done.dart';
 
 class Pista {
@@ -41,9 +42,9 @@ class Pista {
 
   getIconStato(){
     if (stato == 0) {
-      return const Icon(MyFlutterApp.clear,color: Color(0xFFFF0000));
+      return const Icon(MyFlutterApp.clear,color: Colors.red);
     } else {
-      return const Icon(MyFlutterApp.done,color: Color(0xFF00FF00));
+      return const Icon(MyFlutterApp.done,color: Colors.green);
     }
   }
 

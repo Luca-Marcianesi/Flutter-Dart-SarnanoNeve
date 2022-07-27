@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:sarnanoneve/Pista.dart';
-import 'package:sarnanoneve/icons/done.dart';
+import 'package:sarnanoneve/Data/Network/PisteSource.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,24 +8,52 @@ Future main() async {
   runApp(const MyApp());
 }
 
-Stream<List<Pista>> readPiste() =>
-    FirebaseFirestore.instance
-        .collection('SarnanoNeve')
-        .doc('Maddalena')
-        .collection('Piste')
-        .orderBy('numero')
-        .snapshots()
-        .map((snapshot) =>
-        snapshot.docs.map((e) => Pista.fromJson(e.data())).toList());
+Widget infoPista() => Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        const CircleAvatar(
+          radius: 15,
+          backgroundColor: Colors.blueAccent,
+        ),
+        textInfo('Facile'),
+        const CircleAvatar(
+          radius: 15,
+          backgroundColor: Colors.red,
+        ),
+        textInfo('Media'),
+        const CircleAvatar(
+          radius: 15,
+          backgroundColor: Colors.black,
+        ),
+        textInfo('Difficile')
+      ],
+    );
 
-Widget biuldPista(Pista pista) =>
-    ListTile(
-      leading: CircleAvatar(
-        backgroundColor: pista.getColor(),
-        child: Text('${pista.numero}'),
+Widget spazio() => const SizedBox(
+      height: 25,
+    );
+
+Widget textInfo(String difficolta) => Text(
+      difficolta,
+      style: const TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontSize: 14,
       ),
-      title: Text(pista.nome),
-      trailing: pista.getIconStato(),
+    );
+
+Widget comprensorio(String nome) => Row(
+      children: [
+        Text(
+          nome,
+          textAlign: TextAlign.left,
+          style: const TextStyle(
+            color: Colors.orange,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+        ),
+      ],
     );
 
 class MyApp extends StatelessWidget {
@@ -83,26 +109,35 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body:StreamBuilder<List<Pista>>(
-          stream: readPiste(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text('Errore');
-            } else if (snapshot.hasData) {
-              final piste = snapshot.data!;
-              return ListView(
-                children: piste.map(biuldPista).toList(),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }),
-    );
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
+        ),
+        body: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.white, Color(0xFF90D3E8)],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter)),
+            child: SafeArea(
+                child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  spazio(),
+                  infoPista(),
+                  spazio(),
+                  comprensorio('Sassotetto'),
+                  spazio(),
+                  listaPiste('Sassotetto'),
+                  spazio(),
+                  comprensorio('Maddalena'),
+                  spazio(),
+                  listaPiste('Maddalena'),
+                  spazio(),
+                ],
+              ),
+            ))));
     // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
