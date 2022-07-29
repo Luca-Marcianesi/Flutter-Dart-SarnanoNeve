@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:sarnanoneve/Ui/GenericComponent.dart';
+import 'package:sarnanoneve/icons/done.dart';
 
 import '../ImpiantiPiste/ListContainerUI.dart';
 
@@ -15,23 +17,39 @@ class HomeState extends State<HomeUi> {
 
   get tabPositionPiste => 0;
 
+  get iconSize => 50.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         decoration: background(),
         child: Column(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:  [
+                spazioH(),
+                const SizedBox(
+                  width: 250,
+                  child: Image(image: AssetImage('asset/image/2.png'),),
+                ),
+              ],
+            ),
             SingleChildScrollView(
               child: Column(
                 children: [
+                  spazioV(),
+                  spazioV(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
                         decoration: buttonDecoretor(),
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
+                          icon: Icon(SarnanoNeveIcons.alpine,
+                              color: Colors.black, size: iconSize),
+                          label: Text("PISTE", style: textButton()),
                           style: buttonStyle(),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -39,17 +57,22 @@ class HomeState extends State<HomeUi> {
                                   ListContainer(value: tabPositionPiste),
                             ));
                           },
-                          child: Text("Piste", style: textButton()),
                         ),
-                      )
+                      ),
+                      spazioH()
                     ],
                   ),
+                  spazioV(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      spazioH(),
                       Container(
                         decoration: buttonDecoretor(),
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
+                          label: Text("IMPIANTI", style: textButton()),
+                          icon: Icon(SarnanoNeveIcons.seggiovia,
+                              color: Colors.black, size: iconSize),
                           style: buttonStyle(),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -57,7 +80,6 @@ class HomeState extends State<HomeUi> {
                                   ListContainer(value: tabPositionImpainti),
                             ));
                           },
-                          child: Text("Impianti", style: textButton()),
                         ),
                       )
                     ],
@@ -72,26 +94,28 @@ class HomeState extends State<HomeUi> {
   }
 }
 
-TextStyle textButton() =>
-    const TextStyle(color: Colors.black, fontWeight: FontWeight.normal);
+TextStyle textButton() => const TextStyle(
+    color: Colors.black,
+    fontStyle: FontStyle.italic,
+    fontWeight: FontWeight.normal,
+    fontSize: 20);
 
-BoxDecoration background() =>
-    const BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Colors.blueAccent, Colors.lightBlueAccent],
-            begin: Alignment.topCenter, end: Alignment.bottomCenter));
+BoxDecoration background() => const BoxDecoration(
+    gradient: LinearGradient(
+        colors: [Colors.indigo, Colors.lightBlueAccent],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter));
 
+BoxDecoration buttonDecoretor() => const BoxDecoration(
+    gradient: LinearGradient(
+        colors: [Colors.white, Color(0xFF90D3E8)],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter));
 
-BoxDecoration buttonDecoretor() =>
-    const BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Colors.white, Color(0xFF90D3E8)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter));
-
-ButtonStyle buttonStyle() =>
-    ElevatedButton.styleFrom(
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        primary: Colors.transparent,
-        elevation: 0,
-        shadowColor: Colors.transparent);
+ButtonStyle buttonStyle() => ElevatedButton.styleFrom(
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    primary: Colors.transparent,
+    elevation: 0,
+    minimumSize: const Size(200, 110),
+    //padding: const EdgeInsets.all(20),
+    shadowColor: Colors.transparent);

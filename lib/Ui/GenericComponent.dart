@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-Widget spazio() => const SizedBox(
+Widget spazioV() => const SizedBox(
       height: 25,
     );
+Widget spazioH() => const SizedBox(
+  width: 25,
+);
 
 Widget textInfo(String difficolta) => Text(
       difficolta,

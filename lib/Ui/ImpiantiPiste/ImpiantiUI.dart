@@ -24,17 +24,17 @@ class ImpiantiUI extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      spazio(),
+                      spazioV(),
                       infoPista(),
-                      spazio(),
+                      spazioV(),
                       comprensorio('Impianti Sassotetto'),
-                      spazio(),
+                      spazioV(),
                       listaImpianti('Sassotetto'),
-                      spazio(),
+                      spazioV(),
                       comprensorio(' Impianti Maddalena'),
-                      spazio(),
+                      spazioV(),
                       listaImpianti('Maddalena'),
-                      spazio(),
+                      spazioV(),
                     ],
                   ),
                 ))));

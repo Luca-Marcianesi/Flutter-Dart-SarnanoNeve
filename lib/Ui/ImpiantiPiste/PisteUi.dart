@@ -25,17 +25,17 @@ class PisteUI extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      spazio(),
+                      spazioV(),
                       infoPista(),
-                      spazio(),
+                      spazioV(),
                       comprensorio('Sassotetto'),
-                      spazio(),
+                      spazioV(),
                       listaPiste('Sassotetto'),
-                      spazio(),
+                      spazioV(),
                       comprensorio('Maddalena'),
-                      spazio(),
+                      spazioV(),
                       listaPiste('Maddalena'),
-                      spazio(),
+                      spazioV(),
                     ],
                   ),
                 ))));
