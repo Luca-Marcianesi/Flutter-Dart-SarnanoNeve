@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Data/Network/PisteSource.dart';
-import 'GenericComponent.dart';
+import '../../Data/Network/PisteSource.dart';
+import '../GenericComponent.dart';
 
 class PisteUI extends StatelessWidget {
   const PisteUI({Key? key}) : super(key: key);

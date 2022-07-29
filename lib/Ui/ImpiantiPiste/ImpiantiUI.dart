@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Data/Network/PisteSource.dart';
-import 'GenericComponent.dart';
+import 'package:sarnanoneve/Data/Network/ImpiantoSource.dart';
+import '../GenericComponent.dart';
 
 class ImpiantiUI extends StatelessWidget {
   const ImpiantiUI({Key? key}) : super(key: key);
@@ -29,11 +29,11 @@ class ImpiantiUI extends StatelessWidget {
                       spazio(),
                       comprensorio('Impianti Sassotetto'),
                       spazio(),
-                      listaPiste('Sassotetto'),
+                      listaImpianti('Sassotetto'),
                       spazio(),
                       comprensorio(' Impianti Maddalena'),
                       spazio(),
-                      listaPiste('Maddalena'),
+                      listaImpianti('Maddalena'),
                       spazio(),
                     ],
                   ),

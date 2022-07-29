@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:sarnanoneve/Ui/ListContainerUI.dart';
+import 'package:sarnanoneve/Ui/Home/HomeUi.dart';
+import 'package:sarnanoneve/Ui/ImpiantiPiste/ListContainerUI.dart';
 
+import '../icons/done.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,12 +46,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'SarnanoNeve'),
+      home: const MyHomePage(title: 'SaranoNeve'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -60,63 +62,47 @@ class MyHomePage extends StatelessWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-
   final String title;
 
-  get shape => const BeveledRectangleBorder();
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
 
-  get tabPositionImpainti => 1;
+class _MyHomePageState extends State<MyHomePage> {
 
-  get tabPositionPiste => 0;
+  int selectedPage = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Text('SarnanoNeve'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  decoration: buttonDecoretor(),
-                  child: ElevatedButton(
-                    style: buttonStyle(),
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>  ListContainer(value : tabPositionPiste),
-                      ));
-                    },
-                    child: Text("Piste", style: textButton()),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: buttonDecoretor(),
-                  child: ElevatedButton(
-                    style: buttonStyle(),
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ListContainer(value : tabPositionImpainti),
-                      ));
-                    },
-                    child: Text("Impianti", style: textButton()),
-                  ),
-                )
-              ],
-            )
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
+        body: getPage(),
+        bottomNavigationBar: getBottomBar());
+  }
+
+  getPage() {
+    switch (selectedPage) {
+      case 0:
+        return const HomeUi();
+      case 1:
+        return const ListContainer(value: 1);
+    }
+  }
+
+  getBottomBar() {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        BottomNavigationBarItem(
+            icon: Icon(SarnanoNeveIcons.seggiovia), label: "Impianti"),
+      ],
+      onTap: (tapped) {
+        setState(() {
+          selectedPage = tapped;
+        });
+      },
     );
   }
 }

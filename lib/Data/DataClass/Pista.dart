@@ -42,9 +42,9 @@ class Pista {
 
   getIconStato(){
     if (stato == 0) {
-      return const Icon(MyFlutterApp.clear,color: Colors.red);
+      return const Icon(SarnanoNeveIcons.clear,color: Colors.red);
     } else {
-      return const Icon(MyFlutterApp.done,color: Colors.green);
+      return const Icon(SarnanoNeveIcons.done,color: Colors.green);
     }
   }
 
