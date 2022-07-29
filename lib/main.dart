@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:sarnanoneve/Data/Network/PisteSource.dart';
+import 'package:sarnanoneve/Ui/ListContainerUI.dart';
+import 'package:sarnanoneve/Ui/PisteUi.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -8,53 +9,20 @@ Future main() async {
   runApp(const MyApp());
 }
 
-Widget infoPista() => Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const CircleAvatar(
-          radius: 15,
-          backgroundColor: Colors.blueAccent,
-        ),
-        textInfo('Facile'),
-        const CircleAvatar(
-          radius: 15,
-          backgroundColor: Colors.red,
-        ),
-        textInfo('Media'),
-        const CircleAvatar(
-          radius: 15,
-          backgroundColor: Colors.black,
-        ),
-        textInfo('Difficile')
-      ],
-    );
+TextStyle textButton() =>
+    const TextStyle(color: Colors.black, fontWeight: FontWeight.normal);
 
-Widget spazio() => const SizedBox(
-      height: 25,
-    );
+BoxDecoration buttonDecoretor() => const BoxDecoration(
+    gradient: LinearGradient(
+        colors: [Colors.white, Color(0xFF90D3E8)],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter));
 
-Widget textInfo(String difficolta) => Text(
-      difficolta,
-      style: const TextStyle(
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-        fontSize: 14,
-      ),
-    );
-
-Widget comprensorio(String nome) => Row(
-      children: [
-        Text(
-          nome,
-          textAlign: TextAlign.left,
-          style: const TextStyle(
-            color: Colors.orange,
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
-        ),
-      ],
-    );
+ButtonStyle buttonStyle() => ElevatedButton.styleFrom(
+    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    primary: Colors.transparent,
+    elevation: 0,
+    shadowColor: Colors.transparent);
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -81,7 +49,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -95,49 +63,56 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  get shape => const BeveledRectangleBorder();
 
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: const Text('SarnanoNeve'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  decoration: buttonDecoretor(),
+                  child: ElevatedButton(
+                    style: buttonStyle(),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>  ListContainer(),
+                      ));
+                    },
+                    child: Text("Piste", style: textButton()),
+                  ),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: buttonDecoretor(),
+                  child: ElevatedButton(
+                    style: buttonStyle(),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const PisteUI(),
+                      ));
+                    },
+                    child: Text("Impianti", style: textButton()),
+                  ),
+                )
+              ],
+            )
+          ],
         ),
-        body: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.white, Color(0xFF90D3E8)],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter)),
-            child: SafeArea(
-                child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  spazio(),
-                  infoPista(),
-                  spazio(),
-                  comprensorio('Sassotetto'),
-                  spazio(),
-                  listaPiste('Sassotetto'),
-                  spazio(),
-                  comprensorio('Maddalena'),
-                  spazio(),
-                  listaPiste('Maddalena'),
-                  spazio(),
-                ],
-              ),
-            ))));
-    // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+    );
   }
 }
