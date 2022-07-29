@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:sarnanoneve/Ui/ImpiantiUI.dart';
 import 'package:sarnanoneve/Ui/PisteUi.dart';
 
 class ListContainer extends StatefulWidget{
+  final int value;
+
+  const ListContainer({
+    Key? key,
+    required this.value,
+}) :super(key: key);
+
+
   @override
   State<StatefulWidget> createState() => _ListContainer();
   }
@@ -12,10 +21,12 @@ class _ListContainer extends State<ListContainer> with SingleTickerProviderState
 
   late TabController controller;
 
+
   @override
   void initState(){
     super.initState();
     controller = TabController(length: 2, vsync: this);
+    controller.animateTo(widget.value);
   }
   @override
   void dispose(){
@@ -34,7 +45,7 @@ class _ListContainer extends State<ListContainer> with SingleTickerProviderState
         controller: controller,
         children: const [
           PisteUI(),
-          PisteUI()
+          ImpiantiUI()
           
 
         ],
@@ -43,8 +54,8 @@ class _ListContainer extends State<ListContainer> with SingleTickerProviderState
         bottom:  TabBar(
           controller: controller,
           tabs: const [
-            Tab(text: 'Impianti',icon: Icon(Icons.downhill_skiing)),
-            Tab(text: 'Piste',icon: Icon(Icons.wrap_text))
+            Tab(text: 'Piste',icon: Icon(Icons.downhill_skiing)),
+            Tab(text: 'Impianti',icon: Icon(Icons.wrap_text))
             
           ],
 

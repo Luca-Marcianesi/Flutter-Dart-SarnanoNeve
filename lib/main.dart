@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sarnanoneve/Ui/ListContainerUI.dart';
-import 'package:sarnanoneve/Ui/PisteUi.dart';
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -65,6 +65,10 @@ class MyHomePage extends StatelessWidget {
 
   get shape => const BeveledRectangleBorder();
 
+  get tabPositionImpainti => 1;
+
+  get tabPositionPiste => 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +89,7 @@ class MyHomePage extends StatelessWidget {
                     style: buttonStyle(),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>  ListContainer(),
+                        builder: (context) =>  ListContainer(value : tabPositionPiste),
                       ));
                     },
                     child: Text("Piste", style: textButton()),
@@ -102,7 +106,7 @@ class MyHomePage extends StatelessWidget {
                     style: buttonStyle(),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PisteUI(),
+                        builder: (context) => ListContainer(value : tabPositionImpainti),
                       ));
                     },
                     child: Text("Impianti", style: textButton()),
