@@ -22,6 +22,10 @@ class HomeState extends State<HomeUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+
+      ),
       body: Container(
         decoration: background(),
         child: Column(

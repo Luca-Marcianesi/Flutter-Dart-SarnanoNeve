@@ -25,8 +25,6 @@ class ImpiantiUI extends StatelessWidget {
                   child: Column(
                     children: [
                       spazioV(),
-                      infoPista(),
-                      spazioV(),
                       comprensorio('Impianti Sassotetto'),
                       spazioV(),
                       listaImpianti('Sassotetto'),

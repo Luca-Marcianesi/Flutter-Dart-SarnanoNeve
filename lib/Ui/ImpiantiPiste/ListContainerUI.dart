@@ -36,20 +36,23 @@ class _ListContainer extends State<ListContainer>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TabBarView(
-        controller: controller,
-        children: const [PisteUI(), ImpiantiUI()],
-      ),
-      appBar: AppBar(
-        bottom: TabBar(
+        body: TabBarView(
           controller: controller,
-          tabs: const [
-            Tab(text: 'Piste', icon: Icon(SarnanoNeveIcons.alpine)),
-            Tab(text: 'Impianti', icon: Icon(SarnanoNeveIcons.seggiovia))
-          ],
+          children: const [PisteUI(), ImpiantiUI()],
         ),
-      ),
-      );
+        appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: const Size(400,30.0),
+            child: TabBar(
+              controller: controller,
+              tabs: const [
+                Tab(text: 'Piste', icon: Icon(SarnanoNeveIcons.alpine)),
+                Tab(text: 'Impianti', icon: Icon(SarnanoNeveIcons.seggiovia))
+              ],
+            ),
 
+          )
+            
+        ));
   }
 }
