@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sarnanoneve/Ui/Home/HomeUi.dart';
 
 import 'package:sarnanoneve/Ui/ImpiantiPiste/ImpiantiUI.dart';
 import 'package:sarnanoneve/Ui/ImpiantiPiste/PisteUi.dart';
-import 'package:sarnanoneve/icons/done.dart';
+
+import '../../icons/done.dart';
+import '../GenericComponent.dart';
 
 class ListContainer extends StatefulWidget {
   final int value;
@@ -20,6 +23,8 @@ class _ListContainer extends State<ListContainer>
     with SingleTickerProviderStateMixin {
   late TabController controller;
 
+  int get thisPage => 1;
+
   @override
   void initState() {
     super.initState();
@@ -36,23 +41,35 @@ class _ListContainer extends State<ListContainer>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: TabBarView(
-          controller: controller,
-          children: const [PisteUI(), ImpiantiUI()],
-        ),
-        appBar: AppBar(
+      body: TabBarView(
+        controller: controller,
+        children: const [PisteUI(), ImpiantiUI()],
+      ),
+      appBar: AppBar(
+          toolbarHeight: 20,
           bottom: PreferredSize(
-            preferredSize: const Size(400,30.0),
-            child: TabBar(
-              controller: controller,
-              tabs: const [
-                Tab(text: 'Piste', icon: Icon(SarnanoNeveIcons.alpine)),
-                Tab(text: 'Impianti', icon: Icon(SarnanoNeveIcons.seggiovia))
-              ],
+            preferredSize: const Size(400, 30.0),
+            child: Container(
+              color: Colors.white,
+              child: TabBar(
+                indicatorColor: Colors.blueAccent,
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelColor: Colors.indigo,
+                controller: controller,
+                tabs: const [
+                  Tab(
+                    text: "Piste",
+                  ),
+                  Tab(
+                    text: "Impianti",
+                  )
+                ],
+              ),
             ),
-
-          )
-            
-        ));
+          )),
+      bottomNavigationBar: getBottomBar(context,thisPage),
+    );
   }
+
+
 }

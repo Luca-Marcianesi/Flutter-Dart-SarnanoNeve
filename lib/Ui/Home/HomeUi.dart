@@ -19,6 +19,8 @@ class HomeState extends State<HomeUi> {
 
   get iconSize => 50.0;
 
+  int get thisPage => 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,6 +96,7 @@ class HomeState extends State<HomeUi> {
           ],
         ),
       ),
+      bottomNavigationBar: getBottomBar(context,thisPage),
     );
   }
 }
@@ -121,5 +124,4 @@ ButtonStyle buttonStyle() => ElevatedButton.styleFrom(
     primary: Colors.transparent,
     elevation: 0,
     minimumSize: const Size(200, 110),
-    //padding: const EdgeInsets.all(20),
     shadowColor: Colors.transparent);

@@ -25,6 +25,8 @@ class ImpiantiUI extends StatelessWidget {
                   child: Column(
                     children: [
                       spazioV(),
+                      infoImpiabti(),
+                      spazioV(),
                       comprensorio('Impianti Sassotetto'),
                       spazioV(),
                       listaImpianti('Sassotetto'),
@@ -40,23 +42,10 @@ class ImpiantiUI extends StatelessWidget {
   }
 }
 
-Widget infoPista() => Row(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: [
-    const CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.blueAccent,
-    ),
-    textInfo('Facile'),
-    const CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.red,
-    ),
-    textInfo('Media'),
-    const CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.black,
-    ),
-    textInfo('Difficile')
+Widget infoImpiabti() => Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: const [
+    Icon(Icons.watch_later_outlined,color: Colors.indigo,),
+    Text("Gli impianti sono aperti dalle 8:30 alle 16:30")
   ],
 );
