@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sarnanoneve/icons/done.dart';
+import 'package:sarnanoneve/icons/icon.dart';
 
 class Impianto {
   late String tipo;

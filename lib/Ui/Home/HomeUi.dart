@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:sarnanoneve/Ui/GenericComponent.dart';
-import 'package:sarnanoneve/icons/done.dart';
+import 'package:sarnanoneve/Ui/Component/Background.dart';
+import 'package:sarnanoneve/icons/icon.dart';
 
+import '../Component/BottomBar.dart';
+import '../Component/Button.dart';
+import '../Component/Space.dart';
 import '../ImpiantiPiste/ListContainerUI.dart';
 
 class HomeUi extends StatefulWidget {
@@ -29,7 +31,7 @@ class HomeState extends State<HomeUi> {
 
       ),
       body: Container(
-        decoration: background(),
+        decoration: backgroundHome(),
         child: Column(
           children: [
             Row(
@@ -101,27 +103,4 @@ class HomeState extends State<HomeUi> {
   }
 }
 
-TextStyle textButton() => const TextStyle(
-    color: Colors.black,
-    fontStyle: FontStyle.italic,
-    fontWeight: FontWeight.normal,
-    fontSize: 20);
 
-BoxDecoration background() => const BoxDecoration(
-    gradient: LinearGradient(
-        colors: [Colors.indigo, Colors.lightBlueAccent],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter));
-
-BoxDecoration buttonDecoretor() => const BoxDecoration(
-    gradient: LinearGradient(
-        colors: [Colors.white, Color(0xFF90D3E8)],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter));
-
-ButtonStyle buttonStyle() => ElevatedButton.styleFrom(
-    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-    primary: Colors.transparent,
-    elevation: 0,
-    minimumSize: const Size(200, 110),
-    shadowColor: Colors.transparent);

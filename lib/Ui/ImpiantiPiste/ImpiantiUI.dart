@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sarnanoneve/Data/Network/ImpiantoSource.dart';
-import '../GenericComponent.dart';
+
+import '../Component/PisteImpiantiText.dart';
+import '../Component/Space.dart';
 
 class ImpiantiUI extends StatelessWidget {
   const ImpiantiUI({Key? key}) : super(key: key);
@@ -27,11 +29,11 @@ class ImpiantiUI extends StatelessWidget {
                       spazioV(),
                       infoImpiabti(),
                       spazioV(),
-                      comprensorio('Impianti Sassotetto'),
+                      rowComprensorio('Impianti Sassotetto'),
                       spazioV(),
                       listaImpianti('Sassotetto'),
                       spazioV(),
-                      comprensorio(' Impianti Maddalena'),
+                      rowComprensorio(' Impianti Maddalena'),
                       spazioV(),
                       listaImpianti('Maddalena'),
                       spazioV(),
@@ -41,11 +43,3 @@ class ImpiantiUI extends StatelessWidget {
     // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
-
-Widget infoImpiabti() => Row(
-  mainAxisAlignment: MainAxisAlignment.center,
-  children: const [
-    Icon(Icons.watch_later_outlined,color: Colors.indigo,),
-    Text("Gli impianti sono aperti dalle 8:30 alle 16:30")
-  ],
-);

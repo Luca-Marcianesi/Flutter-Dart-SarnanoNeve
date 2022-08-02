@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sarnanoneve/Ui/Home/HomeUi.dart';
-
 import 'package:sarnanoneve/Ui/ImpiantiPiste/ImpiantiUI.dart';
 import 'package:sarnanoneve/Ui/ImpiantiPiste/PisteUi.dart';
 
-import '../../icons/done.dart';
-import '../GenericComponent.dart';
+import '../Component/BottomBar.dart';
 
 class ListContainer extends StatefulWidget {
   final int value;

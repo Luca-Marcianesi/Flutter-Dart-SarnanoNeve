@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../Data/Network/PisteSource.dart';
-import '../GenericComponent.dart';
+import '../Component/PisteImpiantiText.dart';
+import '../Component/Space.dart';
+
 
 class PisteUI extends StatelessWidget {
   const PisteUI({Key? key}) : super(key: key);
@@ -28,11 +30,11 @@ class PisteUI extends StatelessWidget {
                       spazioV(),
                       infoPista(),
                       spazioV(),
-                      comprensorio('Sassotetto'),
+                      rowComprensorio('Sassotetto'),
                       spazioV(),
                       listaPiste('Sassotetto'),
                       spazioV(),
-                      comprensorio('Maddalena'),
+                      rowComprensorio('Maddalena'),
                       spazioV(),
                       listaPiste('Maddalena'),
                       spazioV(),
@@ -43,23 +45,3 @@ class PisteUI extends StatelessWidget {
   }
 }
 
-Widget infoPista() => Row(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: [
-    const CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.blueAccent,
-    ),
-    textInfo('Facile'),
-    const CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.red,
-    ),
-    textInfo('Media'),
-    const CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.black,
-    ),
-    textInfo('Difficile')
-  ],
-);

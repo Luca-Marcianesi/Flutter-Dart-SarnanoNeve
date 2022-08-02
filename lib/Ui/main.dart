@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:sarnanoneve/Ui/Home/HomeUi.dart';
 import 'package:sarnanoneve/Ui/ImpiantiPiste/ListContainerUI.dart';
-
-import '../icons/done.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,20 +9,6 @@ Future main() async {
   runApp(const MyApp());
 }
 
-TextStyle textButton() =>
-    const TextStyle(color: Colors.black, fontWeight: FontWeight.normal);
-
-BoxDecoration buttonDecoretor() => const BoxDecoration(
-    gradient: LinearGradient(
-        colors: [Colors.white, Color(0xFF90D3E8)],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter));
-
-ButtonStyle buttonStyle() => ElevatedButton.styleFrom(
-    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-    primary: Colors.transparent,
-    elevation: 0,
-    shadowColor: Colors.transparent);
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -86,20 +70,5 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         return const ListContainer(value: 1);
     }
-  }
-
-  getBottomBar() {
-    return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(SarnanoNeveIcons.seggiovia), label: "Impianti"),
-      ],
-      onTap: (tapped) {
-        setState(() {
-          selectedPage = tapped;
-        });
-      },
-    );
   }
 }
